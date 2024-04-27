@@ -3,7 +3,7 @@ import React from 'react'
 
 const InvoiceCustomers = () => {
   return (
-    <Link href="/downloadedClients">
+    <Link href={`/downloadedClients`}>
     <div className="rounded-md w-full mx-16 md:w-72 border
      border-indigo-500
     bg-sky-300
