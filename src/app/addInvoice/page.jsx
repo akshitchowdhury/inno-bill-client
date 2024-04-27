@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-
+export const dynamic = 'force-dynamic'
 export default function AddInvoice() {
   const [client, setClient] = useState("");
   const [project, setProject] = useState("");

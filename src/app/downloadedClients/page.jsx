@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react'
 
-
+export const dynamic = 'force-dynamic'
 const getInvoices = async () => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api`, { cache: "no-store" });
