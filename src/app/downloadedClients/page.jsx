@@ -79,10 +79,10 @@ const totalPfCountt = Pfstock()
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {invoices.map((invoice) => (
                     invoice.invCount && invoice.invCount > 0 ? (
-                      <Link
+                      <Link key={invoice.id}
               href={`/getOneInvoice/${invoice._id}`}
             >
-                        <div key={invoice.id} className="bg-white p-4 rounded-lg shadow-md
+                        <div  className="bg-white p-4 rounded-lg shadow-md
                         hover:bg-red-400 trasnsition duration-300
                         ease-in-out">
                             <h1 className="text-lg font-semibold">{invoice.client}</h1>
@@ -101,9 +101,9 @@ const totalPfCountt = Pfstock()
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {invoices.map((invoice, index) => (
                     invoice.pfCount && invoice.pfCount > 0 ? (
-                      <Link 
+                      <Link key={index} 
               href={`/getOneInvoice/${invoice._id}`}> 
-                        <div key={index} className="bg-white p-4 rounded-lg shadow-md
+                        <div  className="bg-white p-4 rounded-lg shadow-md
                         hover:bg-sky-400 trasnsition duration-300
                         ease-in-out">
                             <h1 className="text-lg font-semibold">{invoice.client}</h1>
