@@ -24,7 +24,7 @@ const generatePdf = (invoice) => {
   // doc.text("SAC CODE:  ", 100, 110);
 
   // Add logo
-  const logo = new Image();
+  const logo = new Image(); 
   logo.src = "/innomatric_logo_only.png";
   doc.addImage(logo, "PNG", 40, 60, 50, 50);
 
