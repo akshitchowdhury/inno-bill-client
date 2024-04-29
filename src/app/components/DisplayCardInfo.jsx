@@ -122,6 +122,7 @@ const DisplayCardInfo = ({ id }) => {
     gst,
     cgst,
     sgst,
+    igst,
     balance,
     qty, // Quantity missing
     pfNo,
@@ -166,6 +167,9 @@ const DisplayCardInfo = ({ id }) => {
           </p>
           <p className="mb-2">
             <span className="font-bold">SGST:</span> {sgst}
+          </p>
+          <p className="mb-2">
+            <span className="font-bold">IGST:</span> {igst}
           </p>
           <p className="mb-2">
             <span className="font-bold">Balance:</span> {balance}

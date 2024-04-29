@@ -217,7 +217,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function EditInvoiceForm({id, client, project, address, services, state, city, pin, gst, cgst, sgst, balance, qty, pfNo, invNo, date, price}) {
+export default function EditInvoiceForm({id, client, project, address, services, state, city, pin, gst, cgst, sgst,igst, balance, qty, pfNo, invNo, date, price}) {
   const [newClient, setNewClient] = useState(client);
   const [newProject, setNewProject] = useState(project);
   const [newServices, setNewServices] = useState(services);
@@ -228,6 +228,7 @@ export default function EditInvoiceForm({id, client, project, address, services,
   const [newGst, setNewGst] = useState(gst);
   const [newCgst, setNewCgst] = useState(cgst);
   const [newSgst, setNewSgst] = useState(sgst);
+  const [newIgst, setNewIgst] = useState(igst);
   const [newBalance, setNewBalance] = useState(balance);
   const [newQty, setNewQty] = useState(qty);
   const [newPfNo, setNewPfNo] = useState(pfNo);
@@ -257,6 +258,7 @@ export default function EditInvoiceForm({id, client, project, address, services,
           newGst,
           newCgst,
           newSgst,
+          newIgst,
           newBalance,
           newQty,
           newPfNo,
@@ -400,7 +402,7 @@ export default function EditInvoiceForm({id, client, project, address, services,
 
       {/* SGST */}
       <div className="col-span-1 sm:col-span-1">
-        <label htmlFor="sgst" className="block text-lg font-bold mb-1">SGST/IGST</label>
+        <label htmlFor="sgst" className="block text-lg font-bold mb-1">SGST</label>
         <input
           id="sgst"
           onChange={(e) => setNewSgst(e.target.value)}
@@ -408,6 +410,17 @@ export default function EditInvoiceForm({id, client, project, address, services,
           className="border border-gray-300 px-4 py-2 w-full rounded-md focus:outline-none focus:border-green-500"
           type="number"
           placeholder="SGST"
+        />
+      </div>
+      <div className="col-span-1 sm:col-span-1">
+        <label htmlFor="igst" className="block text-lg font-bold mb-1">IGST</label>
+        <input
+          id="igst"
+          onChange={(e) => setNewIgst(e.target.value)}
+          value={newIgst}
+          className="border border-gray-300 px-4 py-2 w-full rounded-md focus:outline-none focus:border-green-500"
+          type="number"
+          placeholder="IGST"
         />
       </div>
 

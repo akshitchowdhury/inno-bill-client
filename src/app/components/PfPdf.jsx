@@ -614,7 +614,7 @@ const generatePdf = (invoice) => {
         footerY + lineHeight +30
       );
       doc.text(
-        `${invoice.sgst}`,
+        `${invoice.igst}`,
         500,
         footerY + lineHeight +30
       );

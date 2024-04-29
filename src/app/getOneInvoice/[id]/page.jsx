@@ -33,6 +33,7 @@ const getInvoiceById = async (id) => {
       gst ,
       cgst,
       sgst,
+      igst,
       balance,
       qty,
       pfNo,
@@ -53,6 +54,7 @@ const getInvoiceById = async (id) => {
     price={price}  
     cgst={cgst}  
     sgst={sgst}  
+    igst={igst}  
     balance={balance}  
     pfNo={pfNo}  
     invNo={invNo}  

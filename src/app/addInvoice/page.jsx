@@ -14,6 +14,7 @@ export default function AddInvoice() {
   const [gst, setGst] = useState("");
   const [cgst, setCgst] = useState("");
   const [sgst, setSgst] = useState("");
+  const [igst, setIgst] = useState("");
   const [invNo, setInvNo] = useState("");
   const [pfNo, setPfNo] = useState("");
   const [balance, setBalance] = useState("");
@@ -26,7 +27,7 @@ export default function AddInvoice() {
     e.preventDefault();
 
     // Check if all required fields are filled
-    if (!client || !project || !services || !address || !state || !city || !pin || !gst || !cgst || !sgst || !invNo || !pfNo || !balance || !date || !price) {
+    if (!client || !project || !services || !address || !state || !city || !pin || !gst || !cgst  || !invNo || !pfNo || !balance || !date || !price) {
       alert("All fields are required.");
       return;
     }
@@ -43,6 +44,7 @@ export default function AddInvoice() {
       gst,
       cgst,
       sgst,
+      igst,
       invNo,
       pfNo,
       balance,
@@ -165,13 +167,23 @@ export default function AddInvoice() {
           />
         </div>
         <div className="col-span-1 sm:col-span-1">
-          <label htmlFor="sgst" className="block text-lg font-bold mb-1">SGST/IGST</label>
+          <label htmlFor="sgst" className="block text-lg font-bold mb-1">SGST</label>
           <input
             onChange={(e) => setSgst(e.target.value)}
             value={sgst}
             className="border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:border-green-500"
             type="number"
             placeholder="SGST"
+          />
+        </div>
+        <div className="col-span-1 sm:col-span-1">
+          <label htmlFor="igst" className="block text-lg font-bold mb-1">IGST</label>
+          <input
+            onChange={(e) => setIgst(e.target.value)}
+            value={igst}
+            className="border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:border-green-500"
+            type="number"
+            placeholder="IGST"
           />
         </div>
         <div className="col-span-1 sm:col-span-1">
