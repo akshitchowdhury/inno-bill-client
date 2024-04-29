@@ -380,7 +380,7 @@ export default function EditInvoiceForm({id, client, project, address, services,
           onChange={(e) => setNewGst(e.target.value)}
           value={newGst}
           className="border border-gray-300 px-4 py-2 w-full rounded-md focus:outline-none focus:border-green-500"
-          type="number"
+          type="text"
           placeholder="GST no"
         />
       </div>

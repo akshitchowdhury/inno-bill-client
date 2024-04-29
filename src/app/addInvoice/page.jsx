@@ -150,7 +150,7 @@ export default function AddInvoice() {
             onChange={(e) => setGst(e.target.value)}
             value={gst}
             className="border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:border-green-500"
-            type="number"
+            type="text"
             placeholder="GST No"
           />
         </div>
