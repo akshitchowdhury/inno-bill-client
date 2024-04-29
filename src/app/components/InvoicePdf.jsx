@@ -63,12 +63,12 @@ const generatePdf = (invoice) => {
     startY + 20
   );
   doc.text(
-    "No. 1/34/7, Bheemasena, Papareddy Palya",
+    `${invoice.address}`,
     60 + blockWidth + blockSpacing,
     startY + 40
   );
   doc.text(
-    "Papareddy Palya, Bangalore",
+    `${invoice.city}`,
     60 + blockWidth + blockSpacing,
     startY + 60
   );

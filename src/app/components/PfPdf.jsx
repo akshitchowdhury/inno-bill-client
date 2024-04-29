@@ -426,12 +426,12 @@ const generatePdf = (invoice) => {
     startY + 20
   );
   doc.text(
-    "No. 1/34/7, Bheemasena, Papareddy Palya",
+    `${invoice.adress}`,
     60 + blockWidth + blockSpacing,
     startY + 40
   );
   doc.text(
-    "Papareddy Palya, Bangalore",
+    `${invoice.city}`,
     60 + blockWidth + blockSpacing,
     startY + 60
   );
@@ -734,15 +734,6 @@ const generatePdf = (invoice) => {
       doc.setFontSize(8);
       
 
-
-      const textLines = doc.splitTextToSize(
-        "Comments (If any): Request you to kindly release advance payment @ 50 percent.",
-        doc.internal.pageSize.getWidth() - 120
-      );
-      // Display the lines of text
-      textLines.forEach((line, index) => {
-        doc.text(line, 60, footerY+60 + lineHeight + 250 );
-      });
 
       doc.text(
         "For all other queries/questions, please email us at hello@innomatrics.com ",
