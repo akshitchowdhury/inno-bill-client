@@ -104,7 +104,7 @@
 //       ],
 //     ],
 //     body: [[1, invoice.services, invoice.price, 1, invoice.price]],
-//     styles: {
+//     styles: {gs
 //       fillColor: "#005959",
 //       lineColor: "#005959",
 //       lineWidth: 1,
@@ -411,11 +411,11 @@ const generatePdf = (invoice) => {
   doc.rect(40, startY, blockWidth * 2, blockHeight);
   doc.setFontSize(10);
   doc.text("INNOMATRICS Technologies", 60, startY + 20);
-  doc.text("Akshay Complex", 60, startY + 40);
-  doc.text("BTM 2nd Stage", 60, startY + 60);
+  doc.text("2nd Floor, Akshay Complex,", 60, startY + 40);
+  doc.text("No. 01, 16th Main Rd, near Bharat Petroleum,BTM 2nd Stage", 60, startY + 60);
   doc.text("Bangalore", 60, startY + 80);
   doc.text(`Karnataka - 560041`, 60, startY + 100);
-  doc.text("GSTIN: 123456789120", 60, startY + 120);
+  doc.text("GSTIN: 29AAKFI4691K1ZO", 60, startY + 120);
 
   // doc.rect(20 + blockWidth + blockSpacing, startY, blockWidth, blockHeight);
   doc.setFontSize(10);
