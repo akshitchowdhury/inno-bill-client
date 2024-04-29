@@ -412,10 +412,11 @@ const generatePdf = (invoice) => {
   doc.setFontSize(10);
   doc.text("INNOMATRICS Technologies", 60, startY + 20);
   doc.text("2nd Floor, Akshay Complex,", 60, startY + 40);
-  doc.text("No. 01, 16th Main Rd, near Bharat Petroleum,BTM 2nd Stage", 60, startY + 60);
-  doc.text("Bangalore", 60, startY + 80);
-  doc.text(`Karnataka - 560041`, 60, startY + 100);
-  doc.text("GSTIN: 29AAKFI4691K1ZO", 60, startY + 120);
+  doc.text("No. 01, 16th Main Rd, near Bharat Petroleum,", 60, startY + 60);
+  doc.text("BTM 2nd Stage", 60, startY + 80);
+  doc.text("Bangalore", 60, startY + 100);
+  doc.text(`Karnataka - 560041`, 60, startY + 120);
+  doc.text("GSTIN: 29AAKFI4691K1ZO", 60, startY + 136);
 
   // doc.rect(20 + blockWidth + blockSpacing, startY, blockWidth, blockHeight);
   doc.setFontSize(10);
@@ -515,6 +516,12 @@ const generatePdf = (invoice) => {
       ); // Line after the first line of text
       doc.line(
         40,
+        footerY + lineHeight+17,
+        doc.internal.pageSize.getWidth() - 40,
+        footerY + lineHeight+17
+      );
+      doc.line(
+        40,
         footerY + lineHeight+90,
         doc.internal.pageSize.getWidth() - 40,
         footerY + lineHeight+90
@@ -591,14 +598,26 @@ const generatePdf = (invoice) => {
       doc.text(
         "SGST",
         390,
-        footerY + lineHeight +20
+        footerY + lineHeight +10
       );
       doc.text(
-        `${invoice.cgst}`,
+        `${invoice.sgst}`,
         500,
-        footerY + lineHeight +20
+        footerY + lineHeight +10
       );
 
+
+
+      doc.text(
+        "IGST",
+        390,
+        footerY + lineHeight +30
+      );
+      doc.text(
+        `${invoice.sgst}`,
+        500,
+        footerY + lineHeight +30
+      );
 
       //Grand total- Key-val
       doc.text(

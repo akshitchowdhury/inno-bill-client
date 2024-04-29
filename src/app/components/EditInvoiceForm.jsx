@@ -400,7 +400,7 @@ export default function EditInvoiceForm({id, client, project, address, services,
 
       {/* SGST */}
       <div className="col-span-1 sm:col-span-1">
-        <label htmlFor="sgst" className="block text-lg font-bold mb-1">SGST</label>
+        <label htmlFor="sgst" className="block text-lg font-bold mb-1">SGST/IGST</label>
         <input
           id="sgst"
           onChange={(e) => setNewSgst(e.target.value)}

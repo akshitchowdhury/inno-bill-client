@@ -165,7 +165,7 @@ export default function AddInvoice() {
           />
         </div>
         <div className="col-span-1 sm:col-span-1">
-          <label htmlFor="sgst" className="block text-lg font-bold mb-1">SGST</label>
+          <label htmlFor="sgst" className="block text-lg font-bold mb-1">SGST/IGST</label>
           <input
             onChange={(e) => setSgst(e.target.value)}
             value={sgst}
