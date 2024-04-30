@@ -470,11 +470,12 @@ const generatePdf = (invoice) => {
       fillColor: "#005959",
       lineColor: "#005959",
       lineWidth: 1,
+      halign :"center"
     },
     margin: { top: 60 },
     columnStyles: {
       0: {
-        halign: "right",
+        halign: "center",
         minCellHeight: 100,
         cellPadding: 25,
         cellSpacing: 2,
