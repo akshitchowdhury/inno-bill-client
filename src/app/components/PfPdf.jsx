@@ -426,7 +426,7 @@ const generatePdf = (invoice) => {
     startY + 20
   );
   doc.text(
-    `${invoice.adress}`,
+    `${invoice.address}`,
     60 + blockWidth + blockSpacing,
     startY + 40
   );
