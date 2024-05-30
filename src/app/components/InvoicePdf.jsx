@@ -98,7 +98,7 @@ const generatePdf = (invoice) => {
 
         { content: "Qty", styles: { halign: "center" } },
         
-        { content: "Rate", styles: { halign: "center" } },
+        // { content: "Rate", styles: { halign: "center" } },
         { content: "Amount", styles: { halign: "center" } },
       ],
     ],
@@ -357,7 +357,7 @@ const generatePdf = (invoice) => {
       
 
       doc.text(
-        "For all other queries/questions, please email us at hello@innomatrics.com ",
+        "For all other queries/questions, please email us at hello@innomatricstech.com ",
         60,
         footerY+60 + lineHeight + 270
       );
