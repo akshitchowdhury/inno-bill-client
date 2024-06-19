@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import RemoveBtn from "./RemoveBtn";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Navbar from "./Navbar";
 
 const getInvoices = async () => {
   try {
@@ -60,7 +61,6 @@ const InvoiceList = () => {
   // }
   return (
     <>
-    
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-8 ">
         {datas.map((invoice, index) => (
           <div
