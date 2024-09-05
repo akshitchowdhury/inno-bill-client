@@ -216,6 +216,7 @@
 "use client"
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Navbar from "./Navbar";
 
 export default function EditInvoiceForm({id, client, project, address, services, state, city, pin, gst, cgst, sgst,igst, balance, qty, pfNo, invNo, date, price}) {
   const [newClient, setNewClient] = useState(client);
@@ -282,6 +283,8 @@ export default function EditInvoiceForm({id, client, project, address, services,
   
 
   return (
+    <>
+    <Navbar/>
     <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 gap-6 p-6">
       {/* Client Title */}
       <div className="col-span-1 sm:col-span-1">
@@ -505,9 +508,10 @@ export default function EditInvoiceForm({id, client, project, address, services,
       {/* Submit Button */}
       <div className="col-span-3 sm:col-span-3">
         <button className="bg-green-600 hover:bg-green-700 text-white font-bold py-6 px-6 rounded-full w-1/6 transition duration-300 ease-in-out">
-          Update Topic
+          Update Invoice
         </button>
       </div>
     </form>
+    </>
   );
 }
