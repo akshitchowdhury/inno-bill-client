@@ -1,15 +1,14 @@
-// components/Login.js
 "use client"
 import { useState } from 'react';
 
-export default function Login({ onLogin }) {
+export default function Logout({ onLogin }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (username === 'admin' && password === 'password') {
-      onLogin(true);
+      onLogin(true); // Call onLogin when credentials are correct
     } else {
       alert('Invalid credentials');
     }

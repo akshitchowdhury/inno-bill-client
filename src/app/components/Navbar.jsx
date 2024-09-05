@@ -1,10 +1,17 @@
-import React from 'react'
+"use client"
+import React, { useState } from 'react'
 import Link from 'next/link'
 import { HiHome, HiPlus, HiClipboardList } from 'react-icons/hi'
-import { FaUserCircle } from 'react-icons/fa'
+import { FaDoorOpen, FaUserCircle } from 'react-icons/fa'
 import InvoiceCustomers from './InvoiceCustomers'
+import Login from './Login'
+import Logout from '../Logout/page'
 
 const Navbar = () => {
+  // const [isAuth,setIsAuth] = useState(true)
+  // const handleLogOut = ()=>{
+  //   setIsAuth(false)
+  // }
   return (
     <nav className="bg-gradient-to-r from-blue-600 to-purple-600 -my-8 h-[90px] shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -32,10 +39,13 @@ const Navbar = () => {
                 Add Invoice
               </Link>
               <div className="relative">
-                <FaUserCircle className="text-white h-6 w-6 cursor-pointer hover:text-gray-200 transition duration-300" />
+              
+                <FaDoorOpen className="text-white h-6 w-6 cursor-pointer hover:text-gray-200 transition duration-300" />
                 <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10 hidden group-hover:block">
-                  <InvoiceCustomers />
+                {/* <Logout /> */}
+              
                 </div>
+              
               </div>
             </div>
           </div>
