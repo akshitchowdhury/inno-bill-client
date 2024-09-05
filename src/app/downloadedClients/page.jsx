@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import React from 'react'
+import Navbar from '../components/Navbar';
 
 export const dynamic = 'force-dynamic'
 const getInvoices = async () => {
@@ -60,6 +61,7 @@ const totalPfCountt = Pfstock()
 
   return (
     <>
+    <Navbar/>
      <div class="flex justify-between p-4 my-28">
   <div class="flex flex-col">
     <div class="font-bold text-lg">Total Invoices Generated: {totalInvCount}</div>

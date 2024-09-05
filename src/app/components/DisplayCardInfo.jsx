@@ -9,6 +9,7 @@ import PfPdf from "./PfPdf";
 import Link from "next/link";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Navbar from "./Navbar";
 
 const DisplayCardInfo = ({ id }) => {
   const [invoice, setInvoice] = useState(null);
@@ -138,7 +139,8 @@ const DisplayCardInfo = ({ id }) => {
 
   return (
     <div>
-    <Link className='text-black h-[300px] font-bold hover:scale-110 transition ease-in-out duration-300 ' href={"/"}><FontAwesomeIcon icon={faHome}/></Link> 
+    <Navbar/>
+    {/* <Link className='text-black h-[300px] font-bold hover:scale-110 transition ease-in-out duration-300 ' href={"/"}><FontAwesomeIcon icon={faHome}/></Link>  */}
       <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <h2 className="text-xl font-bold mb-4">Invoice Details</h2>
         <div className="grid grid-cols-2 gap-4">

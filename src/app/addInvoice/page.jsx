@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Navbar from "../components/Navbar";
 export const dynamic = 'force-dynamic'
 export default function AddInvoice() {
   const [client, setClient] = useState("");
@@ -75,6 +76,7 @@ export default function AddInvoice() {
 
   return (
     <>
+    <Navbar/>
       <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 gap-6 p-6">
         <div className="col-span-1 sm:col-span-1">
           <label htmlFor="clientTitle" className="block text-lg font-bold mb-1">Client Name</label>

@@ -1,29 +1,38 @@
-// app/page.js
 'use client';
 
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
 import InvoiceList from './components/InvoiceList';
 import Login from './components/Login';
-import Navbar from './components/Navbar';
+import Layout from './components/Layout'; // Import Layout
+import AddInvoice from './addInvoice/page';
 
 export default function Home() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+  // Check for authentication in localStorage
+  useEffect(() => {
+    const authStatus = localStorage.getItem('isAuthenticated');
+    if (authStatus) {
+      setIsAuthenticated(true);
+    }
+  }, []);
+
+  const handleLogin = () => {
+    setIsAuthenticated(true);
+    localStorage.setItem('isAuthenticated', 'true'); // Store in localStorage
+  };
+
   return (
     <div>
       {isAuthenticated ? (
-        <>
-        
-    <div className="container max-w-7xl p-4 mx-auto">
-
-<Navbar/>
-
-<InvoiceList />
-</div>
-        </>
+        <Layout>
+          {/* Any other components, like InvoiceList */}
+          <InvoiceList />
+          
+          {/* Render other components here */}
+        </Layout>
       ) : (
-        <Login onLogin={setIsAuthenticated} />
+        <Login onLogin={handleLogin} />
       )}
     </div>
   );
