@@ -1,251 +1,166 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Navbar from "../components/Navbar";
-export const dynamic = 'force-dynamic'
-export default function AddInvoice() {
-  const [client, setClient] = useState("");
-  const [project, setProject] = useState("");
-  const [services, setServices] = useState("");
-  const [address, setAddress] = useState("");
-  const [state, setState] = useState("");
-  const [city, setCity] = useState("");
-  const [pin, setPin] = useState("");
-  const [gst, setGst] = useState("");
-  const [cgst, setCgst] = useState("");
-  const [sgst, setSgst] = useState("");
-  const [igst, setIgst] = useState("");
-  const [invNo, setInvNo] = useState("");
-  const [pfNo, setPfNo] = useState("");
-  const [balance, setBalance] = useState("");
-  const [date, setDate] = useState("");
-  const [price, setPrice] = useState("");
+import { HiOutlineDocumentAdd } from "react-icons/hi";
 
+export const dynamic = "force-dynamic";
+
+export default function AddInvoice() {
+  const [formData, setFormData] = useState({
+    client: "",
+    project: "",
+    services: "",
+    address: "",
+    state: "",
+    city: "",
+    pin: "",
+    gst: "",
+    cgst: "",
+    sgst: "",
+    igst: "",
+    invNo: "",
+    pfNo: "",
+    balance: "",
+    date: "",
+    price: "",
+  });
+
+  const [loading, setLoading] = useState(true); // Initially true to show spinner
+  const [formSubmitting, setFormSubmitting] = useState(false); // For form submission loading
+  const [error, setError] = useState(null);
   const router = useRouter();
+
+  useEffect(() => {
+    // Simulate loading time, you can replace this with your actual data fetching logic
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000); // 1 second delay for demonstration
+
+    return () => clearTimeout(timer); // Cleanup on unmount
+  }, []);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setFormSubmitting(true);
+    setError(null); // Reset any previous error
 
-    // Check if all required fields are filled
-    if (!client || !project || !services || !address || !state || !city || !pin || !gst || !cgst  || !invNo || !pfNo || !balance || !date || !price) {
+    if (Object.values(formData).some((field) => field === "")) {
       alert("All fields are required.");
+      setFormSubmitting(false);
       return;
     }
 
-    // Prepare the data to be sent
-    const data = {
-      client,
-      project,
-      services,
-      address,
-      state,
-      city,
-      pin,
-      gst,
-      cgst,
-      sgst,
-      igst,
-      invNo,
-      pfNo,
-      balance,
-      date,
-      price,
-      invCount : 0,
-      pfCount : 0
-    };
-
     try {
-      // Send a POST request to add the invoice
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api`, {
         method: "POST",
         headers: { "Content-type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...formData, invCount: 0, pfCount: 0 }),
       });
 
       if (res.ok) {
-        // If successful, redirect to homepage
         router.push("/");
       } else {
         throw new Error("Failed to add invoice.");
       }
     } catch (error) {
       console.error("Error adding invoice:", error);
+      setError(error);
+    } finally {
+      setFormSubmitting(false);
     }
   };
 
-  return (
-    <>
-    <Navbar/>
-      <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 gap-6 p-6">
-        <div className="col-span-1 sm:col-span-1">
-          <label htmlFor="clientTitle" className="block text-lg font-bold mb-1">Client Name</label>
-          <input
-            onChange={(e) => setClient(e.target.value)}
-            value={client}
-            className="border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:border-green-500"
-            type="text"
-            placeholder="Client Name"
-          />
-        </div>
-        <div className="col-span-1 sm:col-span-1">
-          <label htmlFor="projectName" className="block text-lg font-bold mb-1">Project Name</label>
-          <input
-            onChange={(e) => setProject(e.target.value)}
-            value={project}
-            className="border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:border-green-500"
-            type="text"
-            placeholder="Project Name"
-          />
-        </div>
-        <div className="col-span-1 sm:col-span-1">
-          <label htmlFor="serviceType" className="block text-lg font-bold mb-1">Service Type</label>
-          <input
-            onChange={(e) => setServices(e.target.value)}
-            value={services}
-            className="border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:border-green-500"
-            type="text"
-            placeholder="Service Type"
-          />
-        </div>
-        <div className="col-span-1 sm:col-span-1">
-          <label htmlFor="address" className="block text-lg font-bold mb-1">Address</label>
-          <input
-            onChange={(e) => setAddress(e.target.value)}
-            value={address}
-            className="border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:border-green-500"
-            type="text"
-            placeholder="Address"
-          />
-        </div>
-        <div className="col-span-1 sm:col-span-1">
-          <label htmlFor="state" className="block text-lg font-bold mb-1">State</label>
-          <input
-            onChange={(e) => setState(e.target.value)}
-            value={state}
-            className="border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:border-green-500"
-            type="text"
-            placeholder="State"
-          />
-        </div>
-        <div className="col-span-1 sm:col-span-1">
-          <label htmlFor="city" className="block text-lg font-bold mb-1">City</label>
-          <input
-            onChange={(e) => setCity(e.target.value)}
-            value={city}
-            className="border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:border-green-500"
-            type="text"
-            placeholder="City"
-          />
-        </div>
-        <div className="col-span-1 sm:col-span-1">
-          <label htmlFor="pin" className="block text-lg font-bold mb-1">PIN</label>
-          <input
-            onChange={(e) => setPin(e.target.value)}
-            value={pin}
-            className="border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:border-green-500"
-            type="number"
-            placeholder="PIN"
-          />
-        </div>
-        <div className="col-span-1 sm:col-span-1">
-          <label htmlFor="gst" className="block text-lg font-bold mb-1">GST No:</label>
-          <input
-            onChange={(e) => setGst(e.target.value)}
-            value={gst}
-            className="border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:border-green-500"
-            type="text"
-            placeholder="GST No"
-          />
-        </div>
-        <div className="col-span-1 sm:col-span-1">
-          <label htmlFor="cgst" className="block text-lg font-bold mb-1">CGST</label>
-          <input
-            onChange={(e) => setCgst(e.target.value)}
-            value={cgst}
-            className="border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:border-green-500"
-            type="number"
-            placeholder="CGST"
-          />
-        </div>
-        <div className="col-span-1 sm:col-span-1">
-          <label htmlFor="sgst" className="block text-lg font-bold mb-1">SGST</label>
-          <input
-            onChange={(e) => setSgst(e.target.value)}
-            value={sgst}
-            className="border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:border-green-500"
-            type="number"
-            placeholder="SGST"
-          />
-        </div>
-        <div className="col-span-1 sm:col-span-1">
-          <label htmlFor="igst" className="block text-lg font-bold mb-1">IGST</label>
-          <input
-            onChange={(e) => setIgst(e.target.value)}
-            value={igst}
-            className="border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:border-green-500"
-            type="number"
-            placeholder="IGST"
-          />
-        </div>
-        <div className="col-span-1 sm:col-span-1">
-          <label htmlFor="invNo" className="block text-lg font-bold mb-1">Invoice Number</label>
-          <input
-            onChange={(e) => setInvNo(e.target.value)}
-            value={invNo}
-            className="border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:border-green-500"
-            type="text"
-            placeholder="Invoice Number"
-          />
-        </div>
-        <div className="col-span-1 sm:col-span-1">
-          <label htmlFor="pfNo" className="block text-lg font-bold mb-1">PF Number</label>
-          <input
-            onChange={(e) => setPfNo(e.target.value)}
-            value={pfNo}
-            className="border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:border-green-500"
-            type="text"
-            placeholder="PF Number"
-          />
-        </div>
-        <div className="col-span-1 sm:col-span-1">
-          <label htmlFor="balance" className="block text-lg font-bold mb-1">Balance</label>
-          <input
-            onChange={(e) => setBalance(e.target.value)}
-            value={balance}
-            className="border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:border-green-500"
-            type="number"
-            placeholder="Balance"
-          />
-        </div>
-        <div className="col-span-1 sm:col-span-1">
-  <label htmlFor="date" className="block text-lg font-bold mb-1">Date</label>
-  <input
-    onChange={(e) => setDate(e.target.value.split('T')[0])}
-    value={date}
-    className="border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:border-green-500"
-    type="text"
-    placeholder="Date"
-  />
-</div>
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-blue-500"></div>
+      </div>
+    );
+  }
 
-        <div className="col-span-1 sm:col-span-1">
-          <label htmlFor="price" className="block text-lg font-bold mb-1">Price/Cost</label>
-          <input
-            onChange={(e) => setPrice(e.target.value)}
-            value={price}
-            className="border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:border-green-500"
-            type="number"
-            placeholder="Price/Cost"
-          />
-        </div>
-        <button
-          type="submit"
-          className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-full w-fit transition duration-300 ease-in-out"
-        >
-          Add your Invoice
-        </button>
-      </form>
-    </>
+  if (error) {
+    return (
+      <div className="text-center text-red-600 p-4">
+        <h2 className="text-2xl font-bold mb-2">Error</h2>
+        <p>{error.message}</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-100">
+      <Navbar />
+      <div className="container mx-auto px-4 py-16">
+        <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">Add New Invoice</h1>
+        <form onSubmit={handleSubmit} className="bg-white shadow-md rounded-lg p-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {Object.keys(formData).map((key) => (
+              <div key={key} className="mb-4">
+                <label
+                  htmlFor={key}
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  {key.charAt(0).toUpperCase() + key.slice(1)}
+                </label>
+                <input
+                  type={
+                    key === "date"
+                      ? "date"
+                      : ["pin", "cgst", "sgst", "igst", "balance", "price"].includes(key)
+                      ? "number"
+                      : "text"
+                  }
+                  id={key}
+                  name={key}
+                  value={formData[key]}
+                  onChange={handleChange}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder={key.charAt(0).toUpperCase() + key.slice(1)}
+                  required
+                />
+              </div>
+            ))}
+          </div>
+          <div className="mt-6 flex justify-center">
+            <button
+              type="submit"
+              disabled={formSubmitting}
+              className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out flex items-center"
+            >
+              {formSubmitting ? (
+                <svg
+                  className="animate-spin h-5 w-5 mr-3"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  />
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  />
+                </svg>
+              ) : (
+                <HiOutlineDocumentAdd className="mr-2" />
+              )}
+              {formSubmitting ? "Adding Invoice..." : "Add Invoice"}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 }
