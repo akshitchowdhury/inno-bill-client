@@ -60,6 +60,7 @@ export default function Home() {
   }, []);
 
   const handleLogin = () => {
+    
     setIsAuthenticated(true);
     localStorage.setItem('isAuthenticated', 'true'); // Store in localStorage
   };

@@ -643,7 +643,7 @@ const generatePdf = (invoice) => {
 
 
       doc.text(
-        `${invoice.price- invoice.balance}`,
+        `${(invoice.price+invoice.igst+invoice.sgst+invoice.cgst)- invoice.balance}`,
         500,
         footerY + lineHeight +80
       );
