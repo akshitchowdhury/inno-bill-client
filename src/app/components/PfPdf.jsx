@@ -406,7 +406,12 @@ const generatePdf = (invoice) => {
   const blockWidth = 266; // Adjusted block width
   const blockHeight = 140; // Block height
   const blockSpacing = 20; // Spacing between blocks
+  const servicesArray = invoice.services.split(',')
 
+  // Generate the table body dynamically
+  const tableBody = servicesArray.map((service, index) => [
+    (index + 1).toString().split('').join('\n') 
+  ]);
   // Draw left block
   doc.rect(40, startY, blockWidth * 2, blockHeight);
   doc.setFontSize(10);
@@ -465,7 +470,9 @@ const generatePdf = (invoice) => {
         { content: "Amount", styles: { halign: "center" } },
       ],
     ],
-    body: [[1, invoice.services,`18%`,  invoice.qty,invoice.price, invoice.price]],
+    // body: [[1, invoice.services,`18%`,  invoice.qty,invoice.price, invoice.price]],
+    body: [[tableBody.join('\n'),invoice.services.split(',').join('\n'),`18%`,  invoice.qty,invoice.price,invoice.price]],
+    
     styles: {
       fillColor: "#005959",
       lineColor: "#005959",

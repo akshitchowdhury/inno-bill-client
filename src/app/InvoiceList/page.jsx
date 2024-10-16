@@ -74,7 +74,9 @@ const InvoiceList = () => {
               </Link>
               <div className="p-6">
                 <div className="mb-4">
-                  <p className="text-sm text-gray-600"><span className="font-semibold">Services:</span> {invoice.services}</p>
+                  <p className="text-sm text-gray-600"><span className="font-semibold">Services:</span> {invoice.services.split(",").map((service, index) => (
+    <li key={index}>{service.trim()}</li>
+  ))}</p>
                   <p className="text-sm text-gray-600"><span className="font-semibold">Address:</span> {invoice.address}</p>
                   <p className="text-sm text-gray-600"><span className="font-semibold">City:</span> {invoice.city}</p>
                   <p className="text-sm text-gray-600"><span className="font-semibold">State:</span> {invoice.state}</p>

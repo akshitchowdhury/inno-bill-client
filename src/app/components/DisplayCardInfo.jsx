@@ -154,7 +154,12 @@ const DisplayCardInfo = ({ id }) => {
             <span className="font-bold">Address:</span> {address}
           </p>
           <p className="mb-2">
-            <span className="font-bold">Services:</span> {services}
+          <span className="font-bold">Services:</span>
+<ul>
+  {services.split(",").map((service, index) => (
+    <li key={index}>{service.split(",").join("\n")}</li>
+  ))}
+</ul>
           </p>
           <p className="mb-2">
             <span className="font-bold">State:</span> {state}

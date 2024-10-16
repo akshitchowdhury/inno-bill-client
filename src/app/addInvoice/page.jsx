@@ -11,7 +11,7 @@ export default function AddInvoice() {
   const [formData, setFormData] = useState({
     client: "",
     project: "",
-    services: "",
+    services: "", // This will now allow multi-line input in the form
     address: "",
     state: "",
     city: "",
@@ -109,22 +109,35 @@ export default function AddInvoice() {
                 >
                   {key.charAt(0).toUpperCase() + key.slice(1)}
                 </label>
-                <input
-                  type={
-                    key === "date"
-                      ? "date"
-                      : ["pin", "cgst", "sgst", "igst", "balance", "price"].includes(key)
-                      ? "number"
-                      : "text"
-                  }
-                  id={key}
-                  name={key}
-                  value={formData[key]}
-                  onChange={handleChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder={key.charAt(0).toUpperCase() + key.slice(1)}
-                  required
-                />
+                {key === "services" ? (
+                  <textarea
+                    id="services"
+                    name="services"
+                    value={formData.services}
+                    onChange={handleChange}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Enter services, each on a new line"
+                    rows="4"
+                    required
+                  ></textarea>
+                ) : (
+                  <input
+                    type={
+                      key === "date"
+                        ? "date"
+                        : ["pin", "cgst", "sgst", "igst", "balance", "price"].includes(key)
+                        ? "number"
+                        : "text"
+                    }
+                    id={key}
+                    name={key}
+                    value={formData[key]}
+                    onChange={handleChange}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder={key.charAt(0).toUpperCase() + key.slice(1)}
+                    required
+                  />
+                )}
               </div>
             ))}
           </div>
